@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import android.content.res.Configuration
 
 class SelectionActivity : AppCompatActivity() {
 
@@ -21,17 +22,19 @@ class SelectionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Set the title for the activity.
-        // This is done to ensure that the activity label
-        // displayed in the Android launcher is different
-        supportActionBar?.title = "Selector"
+        supportActionBar?.title = getString(R.string.selection_activity_title)
 
         val items = generateTestData()
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
 
+        val columnCount = when {
+            resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE -> 4
+            resources.configuration.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK >= Configuration.SCREENLAYOUT_SIZE_LARGE -> 4
+            else -> 3
+        }
 
-        recyclerView.layoutManager = GridLayoutManager(this, 3)
+        recyclerView.layoutManager = GridLayoutManager(this, columnCount)
 
         val clickEvent = {item: Item ->
             // Item object can be placed directly inside Intent because
@@ -49,17 +52,20 @@ class SelectionActivity : AppCompatActivity() {
      * Generate test info for app
      */
     fun generateTestData(): Array<Item> {
-        return arrayOf(Item(R.drawable.ccf_original, "Original")
-            , Item(R.drawable.ccf_freshstrawberry,"Fresh Strawberry")
-            , Item(R.drawable.ccf_chocolatecaramelicious,"Chocolate Caramelicious Cheesecake ")
-            , Item(R.drawable.ccf_pineappleupsidedown,"Pineapple Upside-Down")
-            , Item(R.drawable.ccf_celebration,"Celebration")
-            , Item(R.drawable.ccf_caramelapple,"Caramel Apple")
-            , Item(R.drawable.ccf_verycherryghirardellichocolate,"Very Cherry Ghirardelli® Chocolate")
-            , Item(R.drawable.ccf_lowlicious,"Low-Licious")
-            , Item(R.drawable.ccf_cinnaboncinnamoncwirl,"Cinnabon® Cinnamon Swirl")
-            , Item(R.drawable.ccf_godiva,"Godiva® Chocolate")
-            , Item(R.drawable.ccf_coconutcreampie,"Coconut Cream Pie")
-            , Item(R.drawable.ccf_saltedcaramel,"Salted Caramel"))
+        val dessertNames = resources.getStringArray(R.array.dessert_names)
+        return arrayOf(
+            Item(R.drawable.ccf_original, dessertNames[0]),
+            Item(R.drawable.ccf_freshstrawberry, dessertNames[1]),
+            Item(R.drawable.ccf_chocolatecaramelicious, dessertNames[2]),
+            Item(R.drawable.ccf_pineappleupsidedown, dessertNames[3]),
+            Item(R.drawable.ccf_celebration, dessertNames[4]),
+            Item(R.drawable.ccf_caramelapple, dessertNames[5]),
+            Item(R.drawable.ccf_verycherryghirardellichocolate, dessertNames[6]),
+            Item(R.drawable.ccf_lowlicious, dessertNames[7]),
+            Item(R.drawable.ccf_cinnaboncinnamoncwirl, dessertNames[8]),
+            Item(R.drawable.ccf_godiva, dessertNames[9]),
+            Item(R.drawable.ccf_coconutcreampie, dessertNames[10]),
+            Item(R.drawable.ccf_saltedcaramel, dessertNames[11])
+        )
     }
 }
