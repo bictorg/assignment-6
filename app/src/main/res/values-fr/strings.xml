@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Application de Desserts</string>
+    <string name="display_activity_title">Afficheur</string>
+    <string name="selection_activity_title">Sélecteur</string>
+    <string name="close_button">Fermer</string>
+    
+    <string-array name="dessert_names">
+        <item>Original</item>
+        <item>Fraise Fraîche</item>
+        <item>Cheesecake Chocolat Caramélisé</item>
+        <item>Ananas Renversé</item>
+        <item>Célébration</item>
+        <item>Pomme Caramel</item>
+        <item>Très Cerise Chocolat Ghirardelli®</item>
+        <item>Peu Calorique</item>
+        <item>Tourbillon de Cannelle Cinnabon®</item>
+        <item>Chocolat Godiva®</item>
+        <item>Tarte à la Noix de Coco</item>
+        <item>Caramel Salé</item>
+    </string-array>
+</resources>
