@@ -7,6 +7,7 @@ import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.content.res.Configuration
+import android.util.Log
 
 class SelectionActivity : AppCompatActivity() {
 
@@ -53,6 +54,10 @@ class SelectionActivity : AppCompatActivity() {
      */
     fun generateTestData(): Array<Item> {
         val dessertNames = resources.getStringArray(R.array.dessert_names)
+        
+        // Add this debugging line
+        Log.d("SelectionActivity", "Loaded dessert names: ${dessertNames.joinToString()}")
+        
         return arrayOf(
             Item(R.drawable.ccf_original, dessertNames[0]),
             Item(R.drawable.ccf_freshstrawberry, dessertNames[1]),
