@@ -11,14 +11,15 @@ class DisplayActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_display)
 
-        // Set the title for the activity.
-        // This can also be done in the manifest
-        supportActionBar?.title = "Display-er"
+        supportActionBar?.title = getString(R.string.display_activity_title)
 
         val imageView = findViewById<ImageView>(R.id.imageView)
         val textView = findViewById<TextView>(R.id.textView)
 
-        findViewById<Button>(R.id.closeButton).setOnClickListener { finish() }
+        findViewById<Button>(R.id.closeButton).apply {
+            text = getString(R.string.close_button)
+            setOnClickListener { finish() }
+        }
 
         // Fetch the intent used to launch this activity
         val item = intent.getParcelableExtra(SelectionActivity.ITEM_KEY, Item::class.java)
